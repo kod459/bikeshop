@@ -1,0 +1,34 @@
+<%= form_for(@mechanic) do |f| %>
+  <% if @mechanic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mechanic.errors.count, "error") %> prohibited this mechanic from being saved:</h2>
+
+      <ul>
+      <% @mechanic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :qualifications %><br>
+    <%= f.text_area :qualifications %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class = "field">
+	 <%= f.label :passwordconfirmation %><br>
+	 <%= f.password_field :password_confirmation %>
+  </div>
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

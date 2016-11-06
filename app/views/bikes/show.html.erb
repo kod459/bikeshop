@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bike.name %>
+</p>
+
+<p>
+  <strong>Maker:</strong>
+  <%= @bike.maker %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @bike.size %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @bike.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @bike.description %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @bike.picture %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @bike.category.name %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @bike.customer.name %>
+</p>
+
+<h2> Repairs for this bike </h2>
+	<%=form_for([@bike, Repair.new]) do |f| %>
+	<%=f.text_area :problem, :rows =>3, :cols => 40 %>
+	<div class = "actions">
+		<%=f.submit "Post Repair" %>
+	</div>
+<%end%>
+
+<%if @bike.repairs.empty? %>
+	<h3> You are the first to comment </h3>
+<%else%>
+		<h2> Previous Problems </h2>
+		<%@bike.repairs.reverse.each do |repair| %>
+				<p><%=repair.problem%>
+				Posted <%=time_ago_in_words(comment.created_at) %> ago by
+				<%=repair.mechanic.name%> </p>
+			<%end%>
+<%end%>
+
+
+
+<%= link_to 'Edit', edit_bike_path(@bike) %> |
+<%= link_to 'Back', bikes_path %>

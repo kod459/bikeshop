@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem: MyText
+  bike_id: 1
+  mechanic_id: 1
+
+two:
+  problem: MyText
+  bike_id: 1
+  mechanic_id: 1

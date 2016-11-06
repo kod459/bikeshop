@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kev's Bike Shop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+<link href="https://blackrockdigital.github.io/full-width-pics.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" <%= link_to "KOD Bike Shop", root_path%></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><%= link_to "Home",root_path%></li>
+      <li><a href="bikes">Bikes</a></li>
+	  
+      <li><a href="customers">Customers</a></li>
+      <li><a href="mechanics">Mechanics</a></li>
+	  
+	
+	  <%if !signed_in? %>
+			<li><%=link_to "Mechanic Sign in", login_path %></li>
+		<% else %>
+			<li>Signed in as <%=@current_mechanic.name %></li>
+			<li><%=link_to "Sign Out",logout_path %></li>
+		<% end %>
+		
+		
+		
+    </ul>
+  </div>
+</nav>
+ 
+ 
+</div>
+
+<%= yield %>
+
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Start Bootstrap</strong>
+                    </h4>
+                    <p>DIT Aungier Street
+                        <br>Dublin</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+   
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>DOB:</strong>
+  <%= @customer.dob %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @customer.password_digest %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @customer.phone_number %>
+</p>
+
+<p>
+	<%@customer.bikes.each do |bike| %>
+		<br>
+	
+		<%= bike.name %>
+		<%= bike.size %>
+		<%= bike.price %>
+		<%= bike.maker %>
+		
+	<% end %>
+	
+
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+	<%@category.bikes.each do |bike| %>
+		<br>
+	
+		<%= bike.name %>
+		<%= bike.size %>
+		<%= bike.price %>
+		<%= bike.maker %>
+		
+	<% end %>
+	
+
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
