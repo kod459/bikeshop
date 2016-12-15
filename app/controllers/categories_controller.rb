@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authorise, :only  =>[:new, :create, :edit, :update, :delete]
+  before_action :authorise, :only  =>[:edit, :update, :delete]
 
   # GET /categories
   # GET /categories.json

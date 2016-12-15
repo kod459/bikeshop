@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :parts
+
+  resources :lineitems
+
+  resources :orders
+
+  resources :carts do
+	resources :lineitems
+  end
+
+  get 'shop/index'
+
   resources :repairs
 
   get 'pages/home'
@@ -16,13 +28,16 @@ controller :sessions do
   get 'logout' => :destroy
   delete 'logout' => :destroy
   
-  get 'mechaniclogin' => :mechanicnew
-  post 'mechaniclogin' => :mechaniccreate
-  get 'mechaniclogout' => :mechanicdestroy
-  delete 'mechaniclogout' => :mechanicdestroy
+  get 'customerlogin' => :customernew
+  post 'customerlogin' => :customercreate
+  get 'customerlogout' => :customerdestroy
+  delete 'customerlogout' => :customerdestroy
   
   end
 
+  
+    
+  get 'search', :to =>'parts#search'
  
 
   resources :customers
@@ -33,12 +48,13 @@ controller :sessions do
 
   resources :categories
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#home'
-  
+	root 'pages#home'
+	
 
 
   # Example of regular route:

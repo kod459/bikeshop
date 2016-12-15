@@ -1,21 +1,20 @@
 class Customer < ActiveRecord::Base
 	has_secure_password
 	has_many :bikes, dependent: :destroy
+	has_many :orders
+	
 	
 	validates :name, presence: true, length: { maximum: 50}
 	validates :email, presence: true
-	validates :email, uniqueness: true
+	##validates :email, uniqueness: true
 	validates :phone_number, presence: true
 	validates :phone_number, length: {is: 9}
 	
-	validate :is_valid_dob?
+	geocoded_by :address
+	after_validation :geocode, :if => :address_changed?
 
-  private
-  def is_valid_dob?
-    if((birthday.is_a?(Date) rescue ArgumentError) == ArgumentError)
-      errors.add(:birthday, 'Sorry, Invalid Date of Birth Entered.')
-    end
-  end
+	
+
 
 	
 	

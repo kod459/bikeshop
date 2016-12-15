@@ -17,27 +17,29 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to "Home",root_path%></li>
-      <li><a href="bikes">Bikes</a></li>
+      <li class="active"><%= link_to "Bikes",bikes_path%></li>
+      <li class="active"><%= link_to "Mechanics",mechanics_path%></li>
+	  <li class="active"><%= link_to "Instructions for Parts",parts_path%></li>
 	  
-      <li><a href="customers">Customers</a></li>
-      <li><a href="mechanics">Mechanics</a></li>
 	  
-	
-	  <%if !signed_in? %>
-			<li><%=link_to "Mechanic Sign in", login_path %></li>
+	  
+		
+		<%if !customersigned_in? %>
+			<li><%=link_to "Customer Sign in", customerlogin_path %></li>
 		<% else %>
-			<li>Signed in as <%=@current_mechanic.name %></li>
-			<li><%=link_to "Sign Out",logout_path %></li>
+			<li>Signed in as <%=@current_customer.name %></li>
+			<li><%=link_to "Sign Out",customerlogout_path %></li>
 		<% end %>
 		
+		<%= render '/parts/search' %>
 		
 		
     </ul>
   </div>
 </nav>
- 
- 
+
 </div>
+
 
 <%= yield %>
 
@@ -49,6 +51,7 @@
                     </h4>
                     <p>DIT Aungier Street
                         <br>Dublin</p>
+						<p><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{53.3386609}%2C#{-6.2698335}" %></p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
                         <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
@@ -66,15 +69,22 @@
                             <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
                         </li>
                     </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
+					<h1>
+                    <%if !signed_in? %>
+						<li><%=link_to "Mechanic Sign in", login_path %></li>
+					<% else %>
+						<li>Signed in as <%=@current_mechanic.name %></li>
+						<li><%=link_to "Sign Out",logout_path %></li>
+					<% end %>
+					</h1>
+			</div>
         </div>
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
     </footer>
 
-   
+	<% flash.each do |key, value| %>
+		<%= content_tag(:p, value, :class => "flash #{key}") %>
+	<% end %>
 
 </body>
 </html>

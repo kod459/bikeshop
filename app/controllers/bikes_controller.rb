@@ -1,6 +1,6 @@
 class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
-  before_action :authorise, :only  =>[:new, :create, :edit, :update, :delete]
+  before_action :authorise, :only  =>[:edit, :update, :delete]
 
   # GET /bikes
   # GET /bikes.json
@@ -12,6 +12,19 @@ class BikesController < ApplicationController
   # GET /bikes/1.json
   def show
   end
+  
+    def search
+	@bikes = Bike.search params[:query]
+	unless @bikes.empty?
+		render 'index'
+	else
+		flash[:notice] = 'No record matches that search'
+		render 'index'
+	
+	end
+	
+  end
+
 
   # GET /bikes/new
   def new

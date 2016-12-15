@@ -54,7 +54,7 @@
 		<h2> Previous Problems </h2>
 		<%@bike.repairs.reverse.each do |repair| %>
 				<p><%=repair.problem%>
-				Posted <%=time_ago_in_words(comment.created_at) %> ago by
+				Posted <%=time_ago_in_words(repair.created_at) %> ago by
 				<%=repair.mechanic.name%> </p>
 			<%end%>
 <%end%>

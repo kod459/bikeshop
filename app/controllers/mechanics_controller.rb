@@ -1,6 +1,6 @@
 class MechanicsController < ApplicationController
   before_action :set_mechanic, only: [:show, :edit, :update, :destroy]
-  before_action :authorise, :only  =>[:new, :create, :edit, :update, :delete]
+  before_action :authorise, :only  =>[:edit, :update, :delete]
 
   # GET /mechanics
   # GET /mechanics.json
@@ -13,6 +13,18 @@ class MechanicsController < ApplicationController
   def show
   end
 
+  def search
+	@mechanics = Mechanic.search params[:query]
+	unless @mechanics.empty?
+		render 'index'
+	else
+		flash[:notice] = 'No record matches that search'
+		render 'index'
+	
+	end
+	
+  end
+  
   # GET /mechanics/new
   def new
     @mechanic = Mechanic.new
@@ -70,6 +82,6 @@ class MechanicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mechanic_params
-      params.require(:mechanic).permit(:name, :qualifications, :password, :password_confirmation, :user_name)
+      params.require(:mechanic).permit(:name, :qualifications, :password, :password_confirmation, :email)
     end
 end

@@ -4,14 +4,20 @@ class RepairsController < ApplicationController
 	def create
 		@bike = Bike.find params[:bike_id]
 		@repair = @bike.repairs.new(repair_params)
-		@repair.bike_id = @current_bike.id
-		@comment.save
+		@repair.mechanic_id = @current_mechanic.id
+		
+		##if @repair.save
+			##Repairmailer.details(@mechanic).deliver
+			
+		##end
+		
 		
 			respond_to do |format|
 				
 				format.html{ redirect_to @bike}
 			
 			end
+		
 	
 	
 	

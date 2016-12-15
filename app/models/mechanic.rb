@@ -4,4 +4,8 @@ class Mechanic < ActiveRecord::Base
 	
 	validates :name, presence: true
 	validates :password, presence: true
+	
+	def self.search(query)
+		where("name LIKE?", "%#{query}")
+	end
 end
